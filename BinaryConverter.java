@@ -9,17 +9,14 @@ public class BinaryConverter {
     }
 
     public static void main(String[] args) {
-        try {
-            Scanner binaryNumber = new Scanner(System.in);
-            System.out.println("Your binary number: ");
-            String number = binaryNumber.nextLine();
+        Scanner binaryNumber = new Scanner(System.in);
+        System.out.println("Your binary number: " + binaryNumber);
+        String number = binaryNumber.nextLine();
 
-            System.out.println(number);
+        System.out.println(number);
 
-            reverseString(number);
+        reverseString(number);
 
-        } catch (Exception e) {
-            System.out.println("Invalid number.");
-        }
+        binaryNumber.close();
     }
 }
