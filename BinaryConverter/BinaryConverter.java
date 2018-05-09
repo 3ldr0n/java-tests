@@ -35,12 +35,15 @@ class doubleBinaryConverter {
             this.finalNumber += math;
             counter++;
         }
+        if (counter != 0) {
+            counter = 0;
+        }
         counter = 0;
         for (char singleNumber : this.integerPart.toCharArray()) {
             double realNumber = Character.getNumericValue(singleNumber);
             double math = realNumber * Math.pow(2, counter);
             this.finalNumber += math;
-            counter ++;
+            counter++;
         }
         return this.finalNumber;
     }
@@ -79,24 +82,51 @@ class IntegerBinaryConverter {
 }
 
 public class BinaryConverter {
+    public static boolean isDouble(String number) {
+        try {
+            double doubleNumber = Double.parseDouble(number);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isInteger(String number) {
+        try {
+            int intNumber = Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         Scanner binaryNumber = new Scanner(System.in);
         System.out.println("Your binary number: ");
         String number = binaryNumber.nextLine();
 
-        doubleBinaryConverter converter = new doubleBinaryConverter(number);
-        converter.revertString();
-        converter.splitNumber();
-        double finalNumber = converter.convertNumber();
-        System.out.println("Final number is: " + finalNumber);
+        while (!isInteger(number) && !isDouble(number)) {
+            binaryNumber = new Scanner(System.in);
+            System.out.println("Your binary number: ");
+            number = binaryNumber.nextLine();
+            
+        }
 
-        /*
-        IntegerBinaryConverter converter = new IntegerBinaryConverter(number);
-        converter.revertString();
+        if (isInteger(number)) {
+            IntegerBinaryConverter converter = new IntegerBinaryConverter(number);
+            converter.revertString();
 
-        double finalNumber = converter.toDecimal();
-        System.out.println("Your binary number in decimal is: " + finalNumber);
-        */
+            double finalNumber = converter.toDecimal();
+            System.out.println("Your binary number in decimal is: " + finalNumber);
+        } else if (isDouble(number)) {
+            doubleBinaryConverter converter = new doubleBinaryConverter(number);
+            converter.revertString();
+            converter.splitNumber();
+            double finalNumber = converter.convertNumber();
+            System.out.println("Final number is: " + finalNumber);
+        } else {
+            System.out.println("That's not a number");
+        }
 
         binaryNumber.close();
     }
