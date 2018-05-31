@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
-class doubleBinaryConverter {
+class DoubleBinaryConverter {
     private String binaryNumber;
     public double finalNumber = 0;
     private String floatPart;
     private String integerPart;
 
-    public doubleBinaryConverter(String binaryNumber) {
+    public DoubleBinaryConverter(String binaryNumber) {
         this.binaryNumber = binaryNumber;
     }
 
@@ -35,9 +35,7 @@ class doubleBinaryConverter {
             this.finalNumber += math;
             counter++;
         }
-        if (counter != 0) {
-            counter = 0;
-        }
+
         counter = 0;
         for (char singleNumber : this.integerPart.toCharArray()) {
             double realNumber = Character.getNumericValue(singleNumber);
@@ -119,7 +117,7 @@ public class BinaryConverter {
             double finalNumber = converter.toDecimal();
             System.out.println("Your binary number in decimal is: " + finalNumber);
         } else if (isDouble(number)) {
-            doubleBinaryConverter converter = new doubleBinaryConverter(number);
+            DoubleBinaryConverter converter = new DoubleBinaryConverter(number);
             converter.revertString();
             converter.splitNumber();
             double finalNumber = converter.convertNumber();
